@@ -7,11 +7,12 @@ fetch("./data/destinations.json")
     data.destinations.map((item) => {
       const apartment = document.createElement("div");
       apartment.classList.add("apartment");
-      apartment.innerHTML = `
-            <img src="${item.image}" alt="${item.title}" />
+      apartment.innerHTML = /*html*/ `
+            <img class="destiImg" src="../img/${item.image}" alt="${item.title}" />
             <h3>${item.title}</h3>
-            <div class="favorite">
-            <img>HEARTICON</img>
+            <div id="favInfo">
+                <img class="favorite" src="./img/heart.png">
+                <p><a href="details.html?id=${item.id}">MORE</a></p>
             </div>
         `;
       apartments.appendChild(apartment);

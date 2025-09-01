@@ -8,6 +8,10 @@
   width: 100%;
 }
 
+#image {
+  width: 100%;
+}
+
 #image img {
   width: 100%;
 }
@@ -28,4 +32,18 @@
 .title,
 .subtitle {
   text-align: center;
+}
+
+.favorite {
+  gap: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-self: end;
+  width: 100px;
+  height: 40px;
+}
+
+.favoriteIcon {
+  width: 30px;
+  height: 30px;
 }

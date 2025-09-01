@@ -13,3 +13,16 @@ body {
   color: #000000;
   line-height: 1.6;
 }
+
+.Favorited svg path {
+  fill: red !important;
+}
+
+.favoriteIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.favoriteIcon svg path {
+  fill: rgb(0, 0, 0);
+}

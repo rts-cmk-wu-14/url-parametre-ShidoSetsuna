@@ -24,6 +24,7 @@ fetch(`./data/${id}.json`)
 
     data.facilities.forEach((element) => {
       const li = document.createElement("li");
+      li.classList.add("FacilityListItem");
       li.textContent = element;
       ul.appendChild(li);
     });

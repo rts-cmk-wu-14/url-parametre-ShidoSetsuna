@@ -1,42 +1,139 @@
+/* ---- Layout ---- */
 #apartmentsList {
   display: grid;
   justify-content: center;
+  padding: 24px;
 }
 
 .apartments {
+  /* Responsive columns: as many 320px cards as fit */
   display: grid;
   grid-template-columns: 300px 300px 300px 300px;
-  column-gap: 20px;
-  row-gap: 15px;
+  gap: 20px;
+  max-width: 1280px; /* keeps lines from getting too wide */
 }
 
+/* ---- Card ---- */
 .apartment {
-  background-color: #cef9ff;
+  display: flex;
+  flex-direction: column;
+  background: #f7fdff; /* gentle tint */
+  border: 1px solid #e6f3f6;
+  border-radius: 14px;
+  overflow: hidden; /* contain image zoom */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.apartment:focus-within,
+.apartment:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ---- Image ---- */
+.apartment .destiImgWrap {
+  position: relative;
+  aspect-ratio: 4 / 3; /* consistent heights; fallback via fixed height below if needed */
+  overflow: hidden;
+  background: #d7eef2;
 }
 
 .apartment .destiImg {
   width: 100%;
-  height: 242px;
-  transition: transform 0.2s;
-}
-
-#favInfo {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
-
-.favoriteIcon {
-  width: 20px;
-  height: 20px;
-}
-
-.pageTitle {
-  font-size: 42px;
-  font-weight: bold;
-  padding: 20px 0;
+  height: 100%;
+  object-fit: cover; /* fill nicely */
+  transition: transform 0.25s ease;
+  display: block;
 }
 
 .apartment .destiImg:hover {
+  transform: scale(1.06);
+}
+
+/* ---- Top bar (title + favorite) ---- */
+#favInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 16px 7px 16px;
+  color: black;
+}
+
+.MoreInfo {
+  background-color: rgba(55, 165, 249, 0.503);
+  padding: 8px;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.MoreInfo a {
+  text-decoration: none;
+  color: black;
+}
+
+.MoreInfo:hover {
+  transform: scale(0.8);
+}
+
+.favoriteIcon {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.favoriteIcon:hover {
+  opacity: 1;
   transform: scale(1.1);
+}
+
+/* ---- Content ---- */
+.apartment .content {
+  padding: 10px 16px 16px 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.pageTitle {
+  font-size: clamp(24px, 3.6vw, 42px);
+  font-weight: 800;
+  line-height: 1.1;
+  padding: 12px 16px 0 16px;
+}
+
+/* Nice small metadata row (price, rooms, etc.) */
+.apartment .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  color: #446;
+  font-size: 0.92rem;
+}
+
+/* Buttons/links row if you have one */
+.apartment .actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.footy {
+  width: 100%;
+  text-align: center;
+}
+
+/* ---- Accessibility / prefs ---- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ---- Narrow screens tweaks ---- */
+@media (max-width: 360px) {
+  .apartments {
+    grid-template-columns: 1fr;
+  }
 }
